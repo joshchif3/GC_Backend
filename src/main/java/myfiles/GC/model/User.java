@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "\"user\"") // Escape the table name
 public class User {
 
     @Id
@@ -46,5 +47,4 @@ public class User {
 
     public Cart getCart() { return cart; }
     public void setCart(Cart cart) { this.cart = cart; }
-
 }
