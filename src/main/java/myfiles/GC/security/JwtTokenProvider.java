@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class JwtTokenProvider {
 
-    private final String SECRET_KEY = "JoshWebs"; // Use a more secure key in production
+    private final String SECRET_KEY = "JoshWebs123456789"; // Use a more secure key in production
     private final long EXPIRATION_TIME = 86400000; // 1 day in milliseconds
 
     // Generate a JWT token from the authentication object
