@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "https://gc-backend-1.onrender.com")
+@CrossOrigin(origins = {"http://localhost:5173", "https://gc-frontend.onrender.com"})
 public class AuthenticationController {
 
     @Autowired

@@ -13,7 +13,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://gc-backend-1.onrender.com")
+                        .allowedOrigins("http://localhost:5173", "https://gc-frontend.onrender.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                         .allowedHeaders("Content-Type", "Authorization")
                         .allowCredentials(true);
