@@ -23,7 +23,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = {"http://localhost:5173", "https://gc-frontend.onrender.com"})
+@CrossOrigin(origins = {"http://localhost:5173", "https://fgc-wnzg.onrender.com/"})
 public class UserController {
 
     @Autowired

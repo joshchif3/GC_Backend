@@ -6,9 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "\"user\"") // Escape the table name
+@Table(name = "\"user\"") // Escape the table name as 'user' is a reserved keyword in SQL
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

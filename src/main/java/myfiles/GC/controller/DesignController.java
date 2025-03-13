@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 @RequestMapping("/api/designs")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true") // Allow CORS for this controller
+@CrossOrigin(origins = "https://fgc-wnzg.onrender.com/", allowCredentials = "true") // Allow CORS for this controller
 public class DesignController {
 
     @Autowired
