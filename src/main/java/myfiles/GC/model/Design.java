@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "designs")
 public class Design {
 
     @Id
@@ -16,56 +15,28 @@ public class Design {
     private String sizes;
 
     @Lob
-    private byte[] designFile; // Store the uploaded file as a byte array
+    private byte[] designFile; // Store the file as a byte array
 
-    private Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt = new Date(); // Automatically set the creation timestamp
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false) // Foreign key to the User table
+    private User user; // Associate the design with a user
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getColors() {
-        return colors;
-    }
-
-    public void setColors(String colors) {
-        this.colors = colors;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getSizes() {
-        return sizes;
-    }
-
-    public void setSizes(String sizes) {
-        this.sizes = sizes;
-    }
-
-    public byte[] getDesignFile() {
-        return designFile;
-    }
-
-    public void setDesignFile(byte[] designFile) {
-        this.designFile = designFile;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+    // Getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getColors() { return colors; }
+    public void setColors(String colors) { this.colors = colors; }
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public String getSizes() { return sizes; }
+    public void setSizes(String sizes) { this.sizes = sizes; }
+    public byte[] getDesignFile() { return designFile; }
+    public void setDesignFile(byte[] designFile) { this.designFile = designFile; }
+    public Date getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

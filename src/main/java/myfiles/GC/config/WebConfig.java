@@ -12,11 +12,11 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173", "https://gc-frontend.onrender.com")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
-                        .allowedHeaders("Content-Type", "Authorization")
-                        .allowCredentials(true);
+                registry.addMapping("/api/**") // Allow CORS for all endpoints under /api
+                        .allowedOrigins("http://localhost:5173") // Allow requests from your frontend
+                        .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specific HTTP methods
+                        .allowedHeaders("*") // Allow all headers
+                        .allowCredentials(true); // Allow credentials (e.g., cookies)
             }
         };
     }
