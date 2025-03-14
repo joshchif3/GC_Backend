@@ -14,7 +14,7 @@ public class Design {
     private int quantity;
     private String sizes;
 
-    @Lob
+    @Column(columnDefinition = "bytea") // Use bytea for PostgreSQL
     private byte[] designFile; // Store the file as a byte array
 
     @Temporal(TemporalType.TIMESTAMP)

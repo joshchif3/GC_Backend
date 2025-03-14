@@ -1,11 +1,25 @@
 package myfiles.GC.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 public class DesignRequest {
+
+    @NotBlank(message = "Colors are required")
     private String colors;
+
+    @Positive(message = "Quantity must be a positive number")
     private int quantity;
+
+    @NotBlank(message = "Sizes are required")
     private String sizes;
+
+    @NotBlank(message = "Design file is required")
     private String designFile;
-    private Integer userId; // Add userId to associate the design with a user
+
+    @NotNull(message = "User ID is required")
+    private Integer userId;
 
     // Getters and setters
     public String getColors() { return colors; }

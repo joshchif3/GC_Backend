@@ -6,7 +6,6 @@ import myfiles.GC.repository.DesignRepository;
 import myfiles.GC.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.io.IOException;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -17,18 +16,16 @@ public class DesignService {
     private DesignRepository designRepository;
 
     @Autowired
-    private UserRepository userRepository; // Add UserRepository to fetch the user
+    private UserRepository userRepository;
 
-    public void saveDesign(String colors, int quantity, String sizes, String designFileBase64, Integer userId) throws IOException {
-        // Check if the Base64 string includes the "data:image/...;base64," prefix
-        String base64Data;
-        if (designFileBase64.startsWith("data:image")) {
-            // Remove the prefix
-            base64Data = designFileBase64.split(",")[1];
-        } else {
-            // Use the entire string as Base64 data
-            base64Data = designFileBase64;
+    public void saveDesign(String colors, int quantity, String sizes, String designFileBase64, Integer userId) {
+        // Validate Base64 data
+        if (designFileBase64 == null || designFileBase64.isEmpty()) {
+            throw new IllegalArgumentException("Design file is required");
         }
+
+        // Remove the "data:image/...;base64," prefix if present
+        String base64Data = designFileBase64.split(",").length > 1 ? designFileBase64.split(",")[1] : designFileBase64;
 
         // Decode the Base64 string to a byte array
         byte[] fileBytes;

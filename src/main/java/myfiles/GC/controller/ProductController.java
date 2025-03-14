@@ -1,17 +1,21 @@
 package myfiles.GC.controller;
 
+import myfiles.GC.exception.ResourceNotFoundException;
 import myfiles.GC.model.Product;
 import myfiles.GC.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = {"https://fgc-wnzg.onrender.com", "https://gc-frontend.onrender.com"}, allowCredentials = "true") // Explicitly specify allowed origins
+@CrossOrigin(origins = {"https://fgc-wnzg.onrender.com", "https://gc-frontend.onrender.com"}, allowCredentials = "true")
+@Validated // Enable method-level validation
 public class ProductController {
 
     @Autowired
@@ -26,14 +30,16 @@ public class ProductController {
     // Save a new product (restricted to ADMIN)
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public Product saveProduct(@RequestBody Product product) {
-        return productService.saveProduct(product);
+    public ResponseEntity<Product> saveProduct(@Valid @RequestBody Product product) {
+        Product savedProduct = productService.saveProduct(product);
+        return ResponseEntity.ok(savedProduct);
     }
 
     // Get a product by its ID
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable int id) {
-        return productService.getProductById(id);
+    public ResponseEntity<Product> getProductById(@PathVariable int id) {
+        Product product = productService.getProductById(id);
+        return ResponseEntity.ok(product);
     }
 
     // Delete a product by its ID (restricted to ADMIN)
@@ -47,21 +53,24 @@ public class ProductController {
     // Update product details (restricted to ADMIN)
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable int id, @RequestBody Product productDetails) {
-        return productService.updateProduct(id, productDetails);
+    public ResponseEntity<Product> updateProduct(@PathVariable int id, @Valid @RequestBody Product productDetails) {
+        Product updatedProduct = productService.updateProduct(id, productDetails);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     // Update stock count for a product (restricted to ADMIN)
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}/stock")
-    public Product updateStockCount(@PathVariable int id, @RequestParam boolean increaseStock) {
-        return productService.updateStockCount(id, increaseStock);
+    public ResponseEntity<Product> updateStockCount(@PathVariable int id, @RequestParam boolean increaseStock) {
+        Product updatedProduct = productService.updateStockCount(id, increaseStock);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     // Save multiple products (restricted to ADMIN)
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/bulk")
-    public List<Product> saveProducts(@RequestBody List<Product> products) {
-        return productService.saveProducts(products);
+    public ResponseEntity<List<Product>> saveProducts(@Valid @RequestBody List<Product> products) {
+        List<Product> savedProducts = productService.saveProducts(products);
+        return ResponseEntity.ok(savedProducts);
     }
 }

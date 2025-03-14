@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/designs")
+@RequestMapping("/api/design")
 @CrossOrigin(origins = "https://fgc-wnzg.onrender.com", allowCredentials = "true")
 public class DesignController {
 
@@ -20,18 +21,10 @@ public class DesignController {
     @Autowired
     private DesignService designService;
 
-    @PostMapping("/upload")
-    public ResponseEntity<String> uploadDesign(@RequestBody DesignRequest designRequest) {
+    @PostMapping("/uploads")
+    public ResponseEntity<String> uploadDesign(@Valid @RequestBody DesignRequest designRequest) {
         try {
             logger.info("Received design upload request: {}", designRequest);
-
-            // Validate the request payload
-            if (designRequest.getColors() == null || designRequest.getQuantity() == 0 ||
-                    designRequest.getSizes() == null || designRequest.getDesignFile() == null ||
-                    designRequest.getUserId() == null) {
-                logger.error("Invalid request payload: {}", designRequest);
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request payload");
-            }
 
             // Save the design to the database
             designService.saveDesign(
