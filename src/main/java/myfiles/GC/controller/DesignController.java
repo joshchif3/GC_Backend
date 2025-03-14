@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/designs")
-@CrossOrigin(origins = "*", allowCredentials = "true") // Modify CORS if needed
+@CrossOrigin(origins = "https://fgc-wnzg.onrender.com", allowCredentials = "true") // Explicitly specify allowed origin
 public class DesignController {
 
     private static final Logger logger = LoggerFactory.getLogger(DesignController.class);

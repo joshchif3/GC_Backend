@@ -13,7 +13,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**") // Allow CORS for all endpoints under /api
-                        .allowedOrigins("https://fgc-wnzg.onrender.com/") // Allow requests from your frontend
+                        .allowedOrigins("https://fgc-wnzg.onrender.com") // Explicitly specify allowed origins
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specific HTTP methods
                         .allowedHeaders("*") // Allow all headers
                         .allowCredentials(true); // Allow credentials (e.g., cookies)

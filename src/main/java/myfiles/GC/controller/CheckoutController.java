@@ -15,7 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/checkout")
-@CrossOrigin(origins = "https://fgc-wnzg.onrender.com/")
+@CrossOrigin(origins = "https://fgc-wnzg.onrender.com", allowCredentials = "true")
 public class CheckoutController {
 
     private static final Logger logger = LoggerFactory.getLogger(CheckoutController.class);
