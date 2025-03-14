@@ -1,11 +1,22 @@
 package myfiles.GC.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 public class DesignRequest {
+    @NotNull(message = "Colors cannot be null")
     private String colors;
+
+    @NotNull(message = "Quantity cannot be null")
     private int quantity;
+
+    @NotNull(message = "Sizes cannot be null")
     private String sizes;
+
+    @NotNull(message = "Design file is required")
     private String designFile;
-    private Integer userId; // Add userId to associate the design with a user
+
+    @NotNull(message = "User ID is required")
+    private Integer userId; // Associate design with a user
 
     // Getters and setters
     public String getColors() { return colors; }
