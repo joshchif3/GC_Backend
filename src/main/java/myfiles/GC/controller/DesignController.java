@@ -1,45 +1,33 @@
 package myfiles.GC.controller;
 
-import myfiles.GC.dto.DesignRequest;
+import myfiles.GC.dto.DesignDTO;
+import myfiles.GC.model.Design;
 import myfiles.GC.service.DesignService;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/design")
-@CrossOrigin(origins = "https://fgc-wnzg.onrender.com", allowCredentials = "true")
+@RequestMapping("/api/designs")
 public class DesignController {
-
-    private static final Logger logger = LoggerFactory.getLogger(DesignController.class);
 
     @Autowired
     private DesignService designService;
 
-    @PostMapping("/uploads")
-    public ResponseEntity<String> uploadDesign(@Valid @RequestBody DesignRequest designRequest) {
-        try {
-            logger.info("Received design upload request: {}", designRequest);
-
-            // Save the design to the database
-            designService.saveDesign(
-                    designRequest.getColors(),
-                    designRequest.getQuantity(),
-                    designRequest.getSizes(),
-                    designRequest.getDesignFile(), // Base64-encoded file
-                    designRequest.getUserId() // Pass the userId
-            );
-
-            logger.info("Design uploaded successfully");
-            return ResponseEntity.ok("Design uploaded successfully");
-        } catch (Exception e) {
-            logger.error("Error uploading design: {}", e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload design: " + e.getMessage());
+    @PostMapping("/upload")
+    public ResponseEntity<Design> uploadDesign(@RequestBody DesignDTO designDTO, @RequestHeader("Authorization") String token) {
+        // Validate token (you can add token validation logic here)
+        if (token == null || !token.startsWith("Bearer ")) {
+            throw new RuntimeException("❌ Invalid or missing token.");
         }
+
+        // Log the incoming payload for debugging
+        System.out.println("📤 Received payload: " + designDTO);
+
+        // Upload the design
+        Design uploadedDesign = designService.uploadDesign(designDTO);
+
+        // Return the saved design with a 200 OK response
+        return ResponseEntity.ok(uploadedDesign);
     }
 }

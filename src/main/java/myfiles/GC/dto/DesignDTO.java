@@ -1,33 +1,13 @@
-package myfiles.GC.model;
+package myfiles.GC.dto;
 
-import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-@Entity
-public class Design {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class DesignDTO {
     private String colors;
     private int quantity;
     private String sizes;
     private String designFile; // Base64 encoded file
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference // Prevents infinite recursion in JSON serialization
-    private User user;
+    private Integer userId; // Use Integer to match the User entity's ID type
 
     // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getColors() {
         return colors;
     }
@@ -60,11 +40,11 @@ public class Design {
         this.designFile = designFile;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
