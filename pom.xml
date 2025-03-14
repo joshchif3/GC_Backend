@@ -49,12 +49,16 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.23</version> <!-- Use the latest version if needed -->
 		</dependency>
+<<<<<<< HEAD
 
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 			<version>7.10.0</version>
 		</dependency>
+=======
+		
+>>>>>>> fcfe45e93f1cb6a0eca9e55b360c39b92c1a4486
 
 
 		<dependency>
