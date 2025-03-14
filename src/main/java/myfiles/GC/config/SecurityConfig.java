@@ -49,7 +49,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS with custom configuration
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/error").permitAll() // Allow public access to root and error endpoints
                         .requestMatchers("/users/register", "/users/login", "/api/products", "/api/products/{id}").permitAll() // Allow public access
+                        .requestMatchers("/api/designs/upload").permitAll() // Allow public access to the design upload endpoint
                         .anyRequest().authenticated() // Require authentication for all other endpoints
                 )
                 .authenticationProvider(authenticationProvider())
