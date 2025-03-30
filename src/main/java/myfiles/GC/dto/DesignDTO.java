@@ -5,7 +5,7 @@ public class DesignDTO {
     private int quantity;
     private String sizes;
     private String designFile; // Base64 encoded file
-    private Integer userId; // Use Integer to match the User entity's ID type
+    private Long userId; // Change Integer to Long
 
     // Getters and Setters
     public String getColors() {
@@ -40,11 +40,11 @@ public class DesignDTO {
         this.designFile = designFile;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() { // Change return type to Long
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) { // Change parameter type to Long
         this.userId = userId;
     }
 }
