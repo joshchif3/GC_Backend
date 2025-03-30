@@ -37,26 +37,26 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserRegistrationRequest request) {
-        // Validate username format
-        if (!request.getUsername().matches("^[a-zA-Z0-9_]{3,20}$")) {
-            return ResponseEntity.badRequest().body(
-                    Map.of("message", "Username must be 3-20 characters (letters, numbers, underscores only)")
-            );
-        }
-
-        // Validate email format
-        if (!request.getEmail().matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            return ResponseEntity.badRequest().body(
-                    Map.of("message", "Invalid email format")
-            );
-        }
-
-        // Validate password strength
-        if (!request.getPassword().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")) {
-            return ResponseEntity.badRequest().body(
-                    Map.of("message", "Password must be 8+ chars with letter, number, and special character")
-            );
-        }
+//        // Validate username format
+//        if (!request.getUsername().matches("^[a-zA-Z0-9_]{3,20}$")) {
+//            return ResponseEntity.badRequest().body(
+//                    Map.of("message", "Username must be 3-20 characters (letters, numbers, underscores only)")
+//            );
+//        }
+//
+//        // Validate email format
+//        if (!request.getEmail().matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+//            return ResponseEntity.badRequest().body(
+//                    Map.of("message", "Invalid email format")
+//            );
+//        }
+//
+//        // Validate password strength
+//        if (!request.getPassword().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")) {
+//            return ResponseEntity.badRequest().body(
+//                    Map.of("message", "Password must be 8+ chars with letter, number, and special character")
+//            );
+//        }
 
         // Check username availability
         if (userDetailsService.findByUsername(request.getUsername()).isPresent()) {
