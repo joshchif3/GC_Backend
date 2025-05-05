@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = {"https://fgc-wnzg.onrender.com", "https://gc-frontend.onrender.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"https://fgc-wnzg.onrender.com", "https://gloriouscreations.shop/"}, allowCredentials = "true")
 @Validated // Enable method-level validation
 public class ProductController {
 
