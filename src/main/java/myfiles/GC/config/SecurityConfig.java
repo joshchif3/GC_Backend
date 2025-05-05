@@ -66,7 +66,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://fgc-wnzg.onrender.com", "https://gc-frontend.onrender.com")); // Explicitly specify allowed origins
+        configuration.setAllowedOrigins(List.of("https://gloriouscreations.shop", "https://fgc-wnzg.onrender.com")); // Explicitly specify allowed origins
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Allow specific HTTP methods
         configuration.setAllowedHeaders(List.of("*")); // Allow all headers
         configuration.setAllowCredentials(true); // Allow credentials (e.g., cookies)
