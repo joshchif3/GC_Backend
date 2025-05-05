@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/cart")
-@CrossOrigin(origins = "https://fgc-wnzg.onrender.com", allowCredentials = "true")
+@CrossOrigin(origins = "https://gloriouscreations.shop", allowCredentials = "true")
 public class CartController {
 
     @Autowired
